@@ -5,7 +5,7 @@ import axios from 'axios';
 export const CategoriasContext = createContext();
 
 //Provider es donde se encuetran las funciones y state
-const CategoriasProvider = (props)=>{
+const CategoriasProvider = (props) => {
 
     //Crear el state del context
     const [ categorias, guardarCategorias ] = useState([])

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CategoriasContext } from '../context/CategoriasContext'; 
+import { IngredientesContext } from '../context/IngredientesContext'; 
 import { RecetasContext } from '../context/RecetasContext'
 
 const Formulario = () => {
@@ -10,6 +11,7 @@ const Formulario = () => {
     });
 
     const {categorias} = useContext(CategoriasContext);
+    const {ingredientes} = useContext(IngredientesContext);
     const {buscarRecetas, guardarConsultar} = useContext(RecetasContext);
 
     //funcion para leer los contenidos
@@ -35,13 +37,19 @@ const Formulario = () => {
             </fieldset>
             <div className="row mt-4">
                 <div className="col-md-4">
-                    <input
-                        name="nombre"
+                <select
                         className="form-control"
-                        type="text"
-                        placeholder="Buscar por Ingrediente"
+                        name="nombre"
                         onChange={obtenerDatosReceta}
-                    />
+                    >
+                        <option value="">-- Selecciona Ingrediente --</option>
+                        {ingredientes.map(ingrediente=>(
+                            <option
+                                key={ingrediente.strIngredient1}
+                                value={ingrediente.strIngredient1}
+                            >{ingrediente.strIngredient1}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className="col-md-4">
                     <select
